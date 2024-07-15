@@ -1,6 +1,5 @@
+// import { Stack, router } from 'expo-router';
 import { KeyboardAvoidingView, StyleSheet, View, Image } from 'react-native';
-import { Stack, router } from 'expo-router';
-
 import NavigationBar from '@/components/NavigationBar';
 import SearchBar from '@/components/SearchBar';
 import DisplayDetails from '@/components/DisplayDetails';

@@ -1,5 +1,5 @@
 import { KeyboardAvoidingView, StyleSheet, Text, View, Image } from 'react-native';
-import { Stack, router } from 'expo-router';
+import { router } from 'expo-router';
 import Button from '@/components/Button';
 
 

@@ -7,17 +7,12 @@ export const menu = () => {
     console.warn("In Menu");
 }
 
-// export const notification = () => {
-//     console.warn("In notification")
-// }
-
 export const account = () => {
     console.warn("In Account");
 }
 
 export default function NavigationBar() {
     return (
-        // <View style={designer.container}>
         <View style={designer.navbar}>
             <View style={designer.logo}>
                 <TouchableOpacity>
@@ -43,7 +38,6 @@ export default function NavigationBar() {
                 />
             </View>
         </View>
-        // </View>
     );
 }
 

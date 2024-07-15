@@ -37,21 +37,19 @@ export default function DisplayDetails() {
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: 'yellow', //for test
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   derailsContinue: {
     backgroundColor: '#f7f8fa',
-    width: 350, //You can use a variable size 'unit' inted of fized value i.e. 350 to increast the width of the outer main BOX.
+    width: 350,
     borderWidth: 1,
     borderRadius: 15,
     borderColor: 'rgba(56, 56, 56, 0.5)',
     padding: 15,
   },
   navTabs: {
-    // backgroundColor: 'blue', //for test
     flexDirection: "row",
     borderBottomWidth: 2,
     borderBottomColor: '#40cbb4',

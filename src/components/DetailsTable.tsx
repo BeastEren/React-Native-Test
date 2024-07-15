@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-// import patentInfo from '../../assets/data/patentInfo'
 type DetailsTableProps = {
   code: string,
   name: string,
@@ -21,13 +20,13 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
   },
-  code:{
+  code: {
     marginRight: 30
   },
-  name:{
+  name: {
     marginRight: 20
   },
-  meficine:{
+  meficine: {
     marginRight: 70
   },
 })

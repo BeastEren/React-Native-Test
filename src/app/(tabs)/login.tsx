@@ -1,13 +1,32 @@
 import { KeyboardAvoidingView, StyleSheet, Text, View, Image, TextInput, Pressable, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { router, Stack } from 'expo-router'
 import NavigationBar from '@/components/NavigationBar'
 import SearchBar from '@/components/SearchBar'
 import Button from '@/components/Button'
+import axios from 'axios'
 
 const Footer = require('@/../../assets/images/Footer.jpg')
 
 export default function Login() {
+
+  const [userEmail, setUserEmail] = useState('');
+  const [userPass, setUserPass] = useState('');
+
+  const handleLogin = () => {
+    console.log('UserEmail:', userEmail);
+    console.log('UserPass:', userPass);
+    setUserEmail('');
+    setUserPass('');
+    const url = 'http://127.0.0.1:8000/api/users/login/';
+    axios.post(url)
+      .then(response => {
+        console.log('Data received:', response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'LogIn' }} />
@@ -23,9 +42,9 @@ export default function Login() {
             <Text style={styles.logo}>LogIn</Text>
             <View>
               <Text style={{ color: 'white', paddingBottom: 5 }}>Email ID/Phone number</Text>
-              <TextInput style={styles.inputBox1} placeholder='Enter your Email/Phone number'></TextInput>
+              <TextInput style={styles.inputBox1} placeholder='Enter your Email/Phone number' value={userEmail}></TextInput>
               <Text style={{ color: 'white', paddingBottom: 5 }}>Password</Text>
-              <TextInput style={styles.inputBox1} placeholder='Enter your Password'></TextInput>
+              <TextInput style={styles.inputBox1} placeholder='Enter your Password' value={userPass}></TextInput>
             </View>
             <Pressable onPress={() => {
               router.push('/forgotPassword')
@@ -36,6 +55,7 @@ export default function Login() {
               width: '60%',
             }}>
               <Button onPress={() => {
+                handleLogin();
                 router.push("/home")
               }} text="Login" />
             </View>
@@ -101,5 +121,3 @@ const styles = StyleSheet.create({
   },
 
 });
-
-// #40cbb4
