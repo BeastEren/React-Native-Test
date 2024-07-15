@@ -25,17 +25,6 @@ export default function DisplayDetails() {
               </Text>
             </Pressable>
           ))}
-
-          {/* <Pressable onPress={() => { }}>
-            <Text style={[styles.navText,]}>Visit History</Text>
-          </Pressable>
-          <Pressable onPress={() => { }}>
-            <Text style={[styles.navText,]}>My Reports</Text>
-          </Pressable>
-          <Pressable onPress={() => { }}>
-            <Text style={[styles.navText,]}>My Documents</Text>
-          </Pressable> */}
-          {/* Initial Ideas */}
         </View>
         <View style={{ marginVertical: 12 }}>
           <Details />

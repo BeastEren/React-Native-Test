@@ -1,3 +1,5 @@
+//chalange for a starter coder
+
 import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native'
 import React from 'react'
 import patentInfo from '../../assets/data/patentInfo'
@@ -12,13 +14,13 @@ export default function Details() {
                 <Text style={styles.tableTextHeader}>Medicine</Text>
             </View>
             <ScrollView>
-                <FlatList
+                {/* <FlatList
                     data={patentInfo}
                     renderItem={({ item }) => <DetailsTable code={item.code} name={item.name} medicine={item.medicine} />}
                     numColumns={3}
                     contentContainerStyle={{ gap: 10, padding: 10, marginRight: 20 }}
                     columnWrapperStyle={{ gap: 10 }}
-                />
+                /> */}
             </ScrollView>
         </View>
     )

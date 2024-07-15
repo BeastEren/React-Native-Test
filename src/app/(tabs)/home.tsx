@@ -11,8 +11,6 @@ export default function TabOneScreen() {
     return (
         <View style={designer.container}>
 
-            <Stack.Screen options={{ headerShown: false }} />
-
             <View style={{ height: '20%', backgroundColor: '#1d95d2' }}>
                 <NavigationBar />
                 <SearchBar />
@@ -33,7 +31,6 @@ export default function TabOneScreen() {
 const designer = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 25,
         backgroundColor: 'white',
     },
     messageWrapper: {

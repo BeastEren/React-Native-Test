@@ -12,8 +12,6 @@ export default function TabOneScreen() {
   return (
     <View style={designer.container}>
 
-      <Stack.Screen options={{ headerShown: false }} />
-
       <View style={{ height: '20%', backgroundColor: '#1d95d2' }}>
         <NavigationBar />
         <SearchBar />
