@@ -17,7 +17,6 @@ export default function signup() {
   const [userPass, setUserPass] = useState('');
 
   const handleSignup = () => {
-    // Handle the signup logic here
     console.log('UserName:', userName);
     console.log('UserNumber:', userNumber);
     console.log('UserEmail:', userEmail);
@@ -40,11 +39,14 @@ export default function signup() {
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'Sign Up' }} />
 
-      <View style={styles.header}>
+      <View style={{ height: '15%', backgroundColor: '#1d95d2' }}>
         <NavigationBar />
         <SearchBar />
       </View>
+
       <ScrollView>
+        <View style={{ height: '5%', width: '100%', backgroundColor: '#1d95d2' }} />
+
         <View style={styles.logInWrapper}>
           <View style={styles.logInSetter}>
 
@@ -89,10 +91,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-  },
-  header: {
-    height: '20%',
-    backgroundColor: '#1d95d2'
   },
   logInWrapper: {
     // flex: 1,

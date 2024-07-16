@@ -20,7 +20,7 @@ export default function searchBar() {
 
 const design = StyleSheet.create({
   wrapper: {
-    marginTop: 30,
+    marginTop: 10,
     marginLeft: 30,
     marginRight: 40,
     flexDirection: 'row',

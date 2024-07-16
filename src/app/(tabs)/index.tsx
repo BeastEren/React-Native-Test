@@ -12,10 +12,12 @@ export default function TabOneScreen() {
   return (
     <View style={designer.container}>
 
-      <View style={{ height: '20%', backgroundColor: '#1d95d2' }}>
+      <View style={{ height: '15%', backgroundColor: '#1d95d2' }}>
         <NavigationBar />
         <SearchBar />
       </View>
+
+      <View style={{ height: '5%', width: '100%', backgroundColor: '#1d95d2' }} />
 
       <View style={designer.messageWrapper}>
         <Text style={designer.message}>
