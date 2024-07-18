@@ -2,6 +2,7 @@
 
 // export default function RootLayout() {
 //   return (
-//     <Stack></Stack>
+//     <Stack screenOptions={{ headerShown: false }}>
+//     </Stack>
 //   );
 // }

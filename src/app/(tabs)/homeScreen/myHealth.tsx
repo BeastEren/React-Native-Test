@@ -9,11 +9,11 @@ const myHealth = () => {
   return (
     <View style={styles.container}>
 
-      <View style={{ height: '15%', backgroundColor: '#1d95d2' }}>
+      <View style={{ height: '16%', backgroundColor: '#1d95d2' }}>
         <NavigationBar />
         <SearchBar />
       </View>
-      <View style={{ height: '5%', width: '100%', backgroundColor: '#1d95d2' }} />
+      <View style={{ height: '9%', width: '100%', backgroundColor: '#1d95d2' }} />
 
       <View style={{ flex: 1 }}></View>
 

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, ScrollView, Pressable } from 'react-native'
+import { StyleSheet, Text, View, TextInput, ScrollView, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { router, Stack } from 'expo-router'
 import NavigationBar from '@/components/NavigationBar'
@@ -16,36 +16,84 @@ export default function signup() {
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
 
+  // const handleSignup = () => {
+  //   // console.log('UserName:', userName);
+  //   // console.log('UserNumber:', userNumber);
+  //   // console.log('UserEmail:', userEmail);
+  //   // console.log('UserPass:', userPass);
+  //   setUserEmail('');
+  //   setUserNumber('');
+  //   setUserName('');
+  //   setUserPass('');
+  //   const url = 'http://192.168.0.107:8000/api/users/signup/';
+  //   axios.get(url)
+  //     .then(response => {
+  //       console.log('Data received:', response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);
+  //     });
+  // };
+
   const handleSignup = () => {
-    console.log('UserName:', userName);
-    console.log('UserNumber:', userNumber);
-    console.log('UserEmail:', userEmail);
-    console.log('UserPass:', userPass);
-    setUserEmail('');
-    setUserNumber('');
-    setUserName('');
-    setUserPass('');
-    const url = 'http://127.0.0.1:8000/api/users/signup/';
-    axios.get(url)
+
+    const url = 'http://192.168.0.107:8000/api/users/signup/';
+
+    axios.post(url, {
+      userName, userEmail, userNumber, userPass
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization': 'Bearer YOUR_ACCESS_TOKEN'
+      }
+    })
       .then(response => {
-        console.log('Data received:', response.data);
+
+        console.log(response.data);
+
+        if (response.data.errors) {
+
+          Alert.alert(
+            'Warning !! Problem with email',
+            `${response.data.errors.userEmail}`,
+            [
+              { text: 'ok', style: 'cancel' }
+            ]
+          )
+        } else {
+
+          Alert.alert(
+            'New User Added',
+            'Thanks for registering',
+            [
+              {
+                text: 'Ok',
+                // style: 'Ok',
+              },
+            ],
+            {
+              cancelable: true,
+            },
+          );
+          router.push("/login")
+          // console.log(response.data)
+        }
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
+        console.error('There was an error!', error);
       });
   };
-
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'Sign Up' }} />
 
-      <View style={{ height: '15%', backgroundColor: '#1d95d2' }}>
+      <View style={{ height: '16%', backgroundColor: '#1d95d2' }}>
         <NavigationBar />
         <SearchBar />
       </View>
 
       <ScrollView>
-        <View style={{ height: '5%', width: '100%', backgroundColor: '#1d95d2' }} />
+        <View style={{ height: '4%', width: '100%', backgroundColor: '#1d95d2' }} />
 
         <View style={styles.logInWrapper}>
           <View style={styles.logInSetter}>
@@ -55,19 +103,19 @@ export default function signup() {
             <View>
               {/* <InputText name='name' color='white' /> */}
               <Text style={{ color: 'white', paddingBottom: 5 }}>Name</Text>
-              <TextInput style={styles.inputBox1} placeholder='Enter your Name' value={userName}></TextInput>
+              <TextInput style={styles.inputBox1} placeholder='Enter your Name' value={userName} onChangeText={setUserName}></TextInput>
 
               <Text style={{ color: 'white', paddingBottom: 5 }}>Phone Number</Text>
-              <TextInput style={styles.inputBox1} placeholder='Enter your Phone Number' keyboardType="numeric" value={userNumber}></TextInput>
+              <TextInput style={styles.inputBox1} placeholder='Enter your Phone Number' keyboardType="numeric" value={userNumber} onChangeText={setUserNumber}></TextInput>
 
               <Text style={{ color: 'white', paddingBottom: 5 }}>Email ID</Text>
-              <TextInput style={styles.inputBox1} placeholder='Enter your Email' value={userEmail}></TextInput>
+              <TextInput style={styles.inputBox1} placeholder='Enter your Email' value={userEmail} onChangeText={setUserEmail}></TextInput>
 
               <Text style={{ color: 'white', paddingBottom: 5 }}>Password</Text>
-              <TextInput style={styles.inputBox1} placeholder='Enter your Password' value={userPass}></TextInput>
+              <TextInput style={styles.inputBox1} placeholder='Enter your Password' value={userPass} onChangeText={setUserPass}></TextInput>
 
               <Text style={{ color: 'white', paddingBottom: 5 }}>Confirm Password</Text>
-              <TextInput style={styles.inputBox1} placeholder='Confirm your Password' value={''}></TextInput>
+              <TextInput style={styles.inputBox1} placeholder='Confirm your Password' value={userPass} onChangeText={setUserPass}></TextInput>
             </View>
 
             <View style={{
@@ -75,7 +123,6 @@ export default function signup() {
             }}>
               <Button onPress={() => {
                 handleSignup();
-                router.push("/login");
               }} text="SignUp" />
             </View>
 

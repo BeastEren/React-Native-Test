@@ -11,26 +11,28 @@ export default function TabOneScreen() {
     return (
         <View style={designer.container}>
 
-            <View style={{ height: '15%', backgroundColor: '#1d95d2' }}>
+            <View style={{ height: '16%', backgroundColor: '#1d95d2' }}>
                 <NavigationBar />
                 <SearchBar />
             </View>
 
             {/* <ScrollView> */}
 
-            <View style={{ height: '5%', width: '100%', backgroundColor: '#1d95d2' }} />
+                <View style={{ height: '9%', width: '100%', backgroundColor: '#1d95d2' }} >
 
-            <HealthCards />
+                    <HealthCards />
 
-            <DisplayDetails />
-
-            {/* </ScrollView> */}
-
-            <KeyboardAvoidingView>
-                <View>
-                    <Image style={designer.footer} source={Footer} />
                 </View>
-            </KeyboardAvoidingView>
+
+                <DisplayDetails />
+
+
+                {/* <KeyboardAvoidingView> */}
+                    <View>
+                        <Image style={designer.footer} source={Footer} />
+                    </View>
+                {/* </KeyboardAvoidingView> */}
+            {/* </ScrollView> */}
 
         </View>
     );
@@ -38,10 +40,11 @@ export default function TabOneScreen() {
 
 const designer = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         backgroundColor: 'white',
     },
     footer: {
+        position:'relative',
         width: "100%",
         height: 200,
         resizeMode: 'stretch',

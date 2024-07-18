@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Pressable, } from 'react-native'
+import { KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Pressable, Alert, } from 'react-native'
 import React, { useState } from 'react'
 import { router, Stack } from 'expo-router'
 import NavigationBar from '@/components/NavigationBar'
@@ -13,40 +13,90 @@ export default function Login() {
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
 
-  const handleLogin = () => {
-    console.log('UserEmail:', userEmail);
-    console.log('UserPass:', userPass);
-    setUserEmail('');
-    setUserPass('');
-    const url = 'http://127.0.0.1:8000/api/users/login/';
-    axios.post(url)
+  // const handleLogin = () => {
+  //   // console.log('UserEmail:', userEmail);
+  //   // console.log('UserPass:', userPass);
+  //   setUserEmail('');
+  //   setUserNumber('');
+  //   setUserName('');
+  //   setUserPass('');
+  //   const url = 'http://192.168.0.107:8000/api/users/signup/';
+  //   axios.get(url)
+  //     .then(response => {
+  //       console.log('Data received:', response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);
+  //     });
+  // }
+
+  const handleLogIn = () => {
+
+    const url = 'http://192.168.0.107:8000/api/users/login/';
+
+    axios.post(url, {
+      userEmail, userPass
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
       .then(response => {
-        console.log('Data received:', response.data);
+
+        console.log(response.data);
+
+        if (response.data.errors) {
+
+          Alert.alert(
+            'Warning !!',
+            `${response.data.errors}`,
+            [
+              { text: 'ok', style: 'cancel' }
+            ]
+          )
+        } else {
+
+          Alert.alert(
+            'Login Successful',
+            `Welcome ${response.data.userName}`,
+            [
+              {
+                text: 'Ok',
+                // style: 'Ok',
+              },
+            ],
+            {
+              cancelable: true,
+            },
+          );
+          router.push("../homeScreen/home")
+          // console.log(response.data)
+        }
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
+        console.error('There was an error!', error);
       });
-  }
+  };
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: 'LogIn' }} />
 
-      <View style={{ height: '15%', backgroundColor: '#1d95d2' }}>
+      <View style={{ height: '16%', backgroundColor: '#1d95d2' }}>
         <NavigationBar />
         <SearchBar />
       </View>
 
-      <View style={{ height: '5%', width: '100%', backgroundColor: '#1d95d2' }} />
+      <View style={{ height: '4%', width: '100%', backgroundColor: '#1d95d2' }} />
 
       <View style={styles.logInWrapper}>
         <View style={styles.logInSetter}>
           <Text style={styles.logo}>LogIn</Text>
           <View>
             <Text style={{ color: 'white', paddingBottom: 5 }}>Email ID/Phone number</Text>
-            <TextInput style={styles.inputBox1} placeholder='Enter your Email/Phone number' value={userEmail} />
+            <TextInput style={styles.inputBox1} placeholder='Enter your Email/Phone number' value={userEmail} onChangeText={setUserEmail} />
 
             <Text style={{ color: 'white', paddingBottom: 5 }}>Password</Text>
-            <TextInput style={styles.inputBox1} placeholder='Enter your Password' value={userPass} />
+            <TextInput style={styles.inputBox1} placeholder='Enter your Password' value={userPass} onChangeText={setUserPass} />
           </View>
           <Pressable onPress={() => {
             router.push('/forgotPassword')
@@ -57,8 +107,7 @@ export default function Login() {
             width: '60%',
           }}>
             <Button onPress={() => {
-              // handleLogin();
-              router.push("../homeScreen/home")
+              handleLogIn();
             }} text="Login" />
           </View>
         </View>
